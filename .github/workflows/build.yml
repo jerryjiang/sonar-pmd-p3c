@@ -44,20 +44,10 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 11
-          server-id: sonatype-nexus
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
-          gpg-passphrase: MAVEN_GPG_PASSPHRASE
-          gpg-private-key: ${{ secrets.GPG_SIGNING_KEY }}
 
-      - name: Deploy SNAPSHOT to maven central
-        env:
-          MAVEN_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_SIGNING_PASSWORD }}
-          SKIP_TESTS: ${{ github.event.inputs.skipTests }}
+      - name: Build
         run: |
-          ./mvnw --batch-mode $(if [ "$SKIP_TESTS" = "yes" ]; then echo "-DskipTests"; fi) clean deploy
+          ./mvnw clean verify
 
       - name: Upload jar
         uses: actions/upload-artifact@v4

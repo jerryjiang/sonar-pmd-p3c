@@ -122,6 +122,15 @@
       <version>${jdom2.version}</version>
     </dependency>
 
+    <!-- Alibaba P3C -->
+    <dependency>
+      <groupId>com.alibaba.p3c</groupId>
+      <artifactId>p3c-pmd</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
